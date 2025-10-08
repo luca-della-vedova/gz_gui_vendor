@@ -30,25 +30,11 @@ find_package(gz_tools_vendor REQUIRED)
 find_package(gz_transport_vendor REQUIRED)
 find_package(gz_utils_vendor REQUIRED)
 
-# Set the VERSION_MATCH to "EXACT" by default, but relax the requirement
-# if we are users are building from source (determined by the
-# GZ_BUILD_FROM_SOURCE environment variable) or if explicitly told to do so
-# by the GZ_RELAX_VERSION_MATCH environment variable.
-set(VERSION_MATCH "EXACT")
-if(NOT $ENV{GZ_BUILD_FROM_SOURCE} STREQUAL "")
-  set(VERSION_MATCH "")
-endif()
-
-if(NOT $ENV{GZ_RELAX_VERSION_MATCH} STREQUAL "")
-  set(VERSION_MATCH "")
-endif()
-
-find_package(${LIB_NAME_FULL} ${VERSION_MATCH} ${LIB_VER} COMPONENTS all QUIET)
 
 ament_vendor(${LIB_NAME_UNDERSCORE}_vendor
   SATISFIED ${${LIB_NAME_FULL}_FOUND}
   VCS_URL https://github.com/gazebosim/${GITHUB_NAME}.git
-  VCS_VERSION f99d930
+  VCS_VERSION f99d930727b73d035c96e1475ebf7bf72b8cbcfd
   CMAKE_ARGS
     -DBUILD_DOCS:BOOL=OFF
   GLOBAL_HOOK
